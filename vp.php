@@ -75,10 +75,11 @@ $result_video = md5(time().$audio_url.$video_url.$user_id);
 if (!is_dir("tmp")) mkdir($folder, 0700, true);
 
 //make the MUXING
-$cmd = "/usr/bin/ffmpeg -i '$video_url' -i '$audio_url' -map 0:v -map 1:a -c copy 'tmp/$result_video.mp4' 2>&1";
+$cmd = "ffmpeg -i '$video_url' -i '$audio_url' -map 0:v -map 1:a -c copy 'tmp/$result_video.mp4' 2>&1";
 
 exec($cmd, $output, $result);
-//var_dump($output);
+var_dump($output);
+echo "$result<br />";
 
 //Print out the video
 
