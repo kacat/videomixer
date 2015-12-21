@@ -68,6 +68,9 @@ $video_url = $full_url. $video_path . "?" .$video_query_str;
 
 $result_video = md5(time().$audio_url.$video_url.$user_id);
 
+//create tmp folder
+if (!is_dir("tmp")) mkdir($folder, 0700, true);
+
 //make the MUXING
 $cmd = "/usr/bin/ffmpeg -i '$video_url' -i '$audio_url' -map 0:v -map 1:a -c copy 'tmp/$result_video.mp4' 2>&1";
 
