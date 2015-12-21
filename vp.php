@@ -80,7 +80,7 @@ exec($cmd, $output, $result);
 //Print out the video
 
 if(!is_file("tmp/$result_video.mp4")){
-	echo "$cmd<br />"
+	echo "$cmd<br />";
 	echo "The video creation was not successful";
 	exit();
 }
