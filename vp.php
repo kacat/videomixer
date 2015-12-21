@@ -80,10 +80,10 @@ exec($cmd, $output, $result);
 //Print out the video
 
 if(!is_file("tmp/$result_video.mp4")){
+	echo "$cmd<br />"
 	echo "The video creation was not successful";
+	exit();
 }
-
-exit();
 
 header('Content-Type: video/mp4');
 echo file_get_contents("tmp/$result_video.mp4");
