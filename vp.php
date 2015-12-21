@@ -1,5 +1,8 @@
 <?php
-	
+
+
+date_default_timezone_set('UTC');
+ 
 require_once('config.php');
 	
 function generateS3QueryStr($content_item, $bucket, $platform)
