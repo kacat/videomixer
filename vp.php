@@ -78,14 +78,17 @@ if (!is_dir("tmp")) mkdir($folder, 0700, true);
 $cmd = "ffmpeg -i '$video_url' -i '$audio_url' -map 0:v -map 1:a -c copy 'tmp/$result_video.mp4' 2>&1";
 
 exec($cmd, $output, $result);
-var_dump($output);
-echo "$result<br />";
+
+foreach($output as $output_line){
+	echo "$output_line<br />";
+}
+echo "<br />$result<br />";
 
 //Print out the video
 
 if(!is_file("tmp/$result_video.mp4")){
-	echo "$cmd<br />";
-	echo "The video creation was not successful";
+	echo "<br />$cmd<br />";
+	echo "<br />The video creation was not successful<br />";
 	exit();
 }
 
