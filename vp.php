@@ -78,12 +78,13 @@ if (!is_dir("tmp")) mkdir("tmp", 0700, true);
 $cmd = "ffmpeg -i \"$video_url\" -i \"$audio_url\" -map 0:v -map 1:a -c copy \"tmp/$result_video.mp4\" 2>&1";
 
 if(is_file("tmp/$result_video.mp4")){
-	header('Content-Type: video/mp4');
-	echo file_get_contents("tmp/$result_video.mp4");
+	//header('Content-Type: video/mp4');
+	//echo file_get_contents("tmp/$result_video.mp4");
 	
 	//$rmv = "rm -f 'tmp/$result_video.mp4'";
 	//exec($rmv, $output2, $result2);
-	exit();
+	header("Location: http://ec2-52-6-129-71.compute-1.amazonaws.com/tmp/$result_video.mp4");
+	die();
 	
 }else{
 	exec($cmd, $output, $result);
@@ -102,8 +103,11 @@ if(!is_file("tmp/$result_video.mp4")){
 	exit();
 }
 
-header('Content-Type: video/mp4');
-echo file_get_contents("tmp/$result_video.mp4");
+header("Location: http://ec2-52-6-129-71.compute-1.amazonaws.com/tmp/$result_video.mp4");
+die();
+
+//header('Content-Type: video/mp4');
+//echo file_get_contents("tmp/$result_video.mp4");
 
 //remove junk
 
