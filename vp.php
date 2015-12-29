@@ -77,6 +77,9 @@ if (!is_dir("tmp")) mkdir("tmp", 0700, true);
 //make the MUXING
 $cmd = "ffmpeg -i \"$video_url\" -i \"$audio_url\" -map 0:v -map 1:a -c copy \"tmp/$result_video.mp4\" 2>&1";
 
+echo $cmd;
+die();
+
 if(is_file("tmp/$result_video.mp4")){
 	//header('Content-Type: video/mp4');
 	//echo file_get_contents("tmp/$result_video.mp4");
