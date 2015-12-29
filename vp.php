@@ -77,7 +77,17 @@ if (!is_dir("tmp")) mkdir("tmp", 0700, true);
 //make the MUXING
 $cmd = "ffmpeg -i \"$video_url\" -i \"$audio_url\" -map 0:v -map 1:a -c copy \"tmp/$result_video.mp4\" 2>&1";
 
-exec($cmd, $output, $result);
+if(is_file("tmp/$result_video.mp4")){
+	header('Content-Type: video/mp4');
+	echo file_get_contents("tmp/$result_video.mp4");
+	
+	//$rmv = "rm -f 'tmp/$result_video.mp4'";
+	//exec($rmv, $output2, $result2);
+	exit();
+	
+}else{
+	exec($cmd, $output, $result);
+}
 
 /*foreach($output as $output_line){
 	echo "$output_line<br />";
@@ -97,9 +107,9 @@ echo file_get_contents("tmp/$result_video.mp4");
 
 //remove junk
 
-$rmv = "rm -f 'tmp/$result_video.mp4'";
+//$rmv = "rm -f 'tmp/$result_video.mp4'";
 
-exec($rmv, $output2, $result2);
+//exec($rmv, $output2, $result2);
 //var_dump($output2);
 
 ?>
